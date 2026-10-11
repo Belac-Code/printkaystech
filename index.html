@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintKay's Tech | CodeForge Academy - Practical Tech & Coding School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;700&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="printkays tech.css">
+     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#080C14',
+                            card: '#0F172A',
+                            border: '#1E293B',
+                            primary: '#06B6D4',
+                            accent: '#6366F1',
+                            emerald: '#10B981',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    </head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white relative">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-0.5 shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all">
+                        <div class="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid fa-code text-cyan-400 font-bold text-lg"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-xl tracking-tight text-white block leading-none">PrintKay's <span class="text-cyan-400">Tech</span></span>
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400 block mt-1">CodeForge Academy</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+                    <a href="#plans" class="hover:text-cyan-400 transition-colors">Pricing & Tracks</a>
+                    <a href="#modular" class="hover:text-cyan-400 transition-colors">Custom Modules</a>
+                    <a href="#courses" class="hover:text-cyan-400 transition-colors">Curriculum</a>
+                    <a href="#playground" class="hover:text-cyan-400 transition-colors">Live Sandbox</a>
+                    <a href="#certificate" class="hover:text-cyan-400 transition-colors">Certificates</a>
+                    <a href="#connect" class="hover:text-cyan-400 transition-colors">Find Us</a>
+                    <a href="#faq" class="hover:text-cyan-400 transition-colors">FAQ</a>
+                </div>
+
+                <!-- Call WhatsApp Header CTA -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button onclick="openEnrollModal('General Inquiry', '30000', '1 Month')" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 transition-all duration-300 flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Enroll via WhatsApp
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden glass-panel border-t border-slate-800 px-4 pt-4 pb-6 space-y-3">
+            <a href="#plans" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Pricing Tracks</a>
+            <a href="#modular" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Custom Modules</a>
+            <a href="#courses" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Curriculum & Search</a>
+            <a href="#playground" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Live Sandbox</a>
+            <a href="#certificate" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Certificate Generator</a>
+            <a href="#connect" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Find Us On</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">FAQ</a>
+            <button onclick="openEnrollModal('General Enrollment', '30000', '1 Month'); toggleMobileMenu()" class="w-full mt-2 px-5 py-3 rounded-xl bg-emerald-500 text-white font-semibold text-center flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Enroll via WhatsApp
+            </button>
+        </div>
+    </nav>
+
+    <!-- Notice Banner for Class Hours & Facility vs Home Tutor -->
+    <div class="pt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel border-l-4 border-l-cyan-400 p-4 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs sm:text-sm text-slate-300">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-clock text-base"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-white block">Standard Session Length: 3 Hours Per Class</span>
+                    <span class="text-slate-400 text-xs">Need extended or intensive hours? Additional time can be negotiated during physical onboarding.</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+                <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-building mr-1"></i> Facility: FREE</span>
+                <span class="px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20"><i class="fa-solid fa-house-user mr-1"></i> Home Tutor: Daily Transport (Negotiable)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-gradient-glow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-6 reveal">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wide uppercase shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    PrintKay's Tech & CodeForge Academy
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                    Master Practical Tech Skills. <br class="hidden sm:inline"/>
+                    <span class="text-gradient">From Zero to Industry Ready.</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-slate-400 text-base sm:text-lg md:text-xl font-normal leading-relaxed">
+                    Practical 1-to-3 month intensive schemes in Computer Operations, Web Coding, JavaScript, and Network Infrastructure. Standard 3-hour hands-on sessions.
+                </p>
+
+                <!-- Call to Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <button onclick="openEnrollModal('Full Track Application', '150000', 'Flexible')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold shadow-lg shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Register Directly via WhatsApp
+                    </button>
+                    <a href="#plans" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-slate-800/60 text-slate-200 font-semibold border border-slate-700 transition-all text-center">
+                        View Full Price List <i class="fa-solid fa-arrow-down ml-2 text-cyan-400"></i>
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="pt-10 grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-slate-800/80 mt-12">
+                    <div class="p-4 rounded-xl glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">3 Hours</div>
+                        <div class="text-xs text-slate-400 mt-1">Per Practical Session</div>
+                    </div>
+                    <div class="p-4 rounded-xl glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">WhatsApp</div>
+                        <div class="text-xs text-slate-400 mt-1">Direct Instant Apply</div>
+                    </div>
+                    <div class="p-4 rounded-xl glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-purple-400 font-mono">Facility / Home</div>
+                        <div class="text-xs text-slate-400 mt-1">Flexible Class Venues</div>
+                    </div>
+                    <div class="p-4 rounded-xl glass-card">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-indigo-400 font-mono">Certified</div>
+                        <div class="text-xs text-slate-400 mt-1">Completion Diploma</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Main Duration Tracks Section -->
+    <section id="plans" class="py-20 relative bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-2">Primary Training Tracks</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Choose Your Skill Level & Duration</h3>
+                <p class="text-slate-400 mt-2 text-sm">Flexible programs tailored to whether you want general computer operation or full coding & networking mastery.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Track 1: Computer Operation (Appreciation) -->
+                <div class="rounded-3xl glass-panel p-8 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all relative reveal">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-4">Core Digital Skills</div>
+                        <h4 class="text-3xl font-bold text-white">Computer Operation</h4>
+                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">Master physical setup, operating systems, file directories, internet navigation, and basic documentation tools.</p>
+                        
+                        <!-- Duration selector for Computer Operation -->
+                        <div class="mt-6 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
+                            <label class="text-xs font-mono uppercase text-slate-400 block">Select Target Duration:</label>
+                            
+                            <div class="space-y-2">
+                                <label onclick="setOpPrice('30000', '1 Month')" class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 cursor-pointer border border-slate-700 hover:border-cyan-500 transition-all">
+                                    <div class="flex items-center gap-2">
+                                        <input type="radio" name="op-duration" value="1 Month" checked class="text-cyan-500 focus:ring-0">
+                                        <span class="text-sm font-semibold text-white">1 Month Express</span>
+                                    </div>
+                                    <span class="text-cyan-400 font-mono font-bold text-sm">₦30,000</span>
+                                </label>
+
+                                <label onclick="setOpPrice('55000', '2 Months')" class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 cursor-pointer border border-slate-700 hover:border-cyan-500 transition-all">
+                                    <div class="flex items-center gap-2">
+                                        <input type="radio" name="op-duration" value="2 Months" class="text-cyan-500 focus:ring-0">
+                                        <span class="text-sm font-semibold text-white">2 Months Standard</span>
+                                    </div>
+                                    <span class="text-cyan-400 font-mono font-bold text-sm">₦55,000</span>
+                                </label>
+
+                                <label onclick="setOpPrice('75000', '3 Months')" class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 cursor-pointer border border-slate-700 hover:border-cyan-500 transition-all">
+                                    <div class="flex items-center gap-2">
+                                        <input type="radio" name="op-duration" value="3 Months" class="text-cyan-500 focus:ring-0">
+                                        <span class="text-sm font-semibold text-white">3 Months Mastery</span>
+                                    </div>
+                                    <span class="text-cyan-400 font-mono font-bold text-sm">₦75,000</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-slate-800/80 pt-6 mt-6">
+                            <div class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>3-Hour Hands-On Sessions</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Facility (Free) OR Home Tutor Option</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Official PrintKay Certificate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="op-enroll-btn" onclick="openEnrollModal('Computer Operation', currentOpPrice, currentOpDuration)" class="w-full mt-8 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-white font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Apply for Computer Operation
+                    </button>
+                </div>
+
+                <!-- Track 2: Coding & Networking Track (Fixed ₦150k with Flexible Pace) -->
+                <div class="rounded-3xl glass-panel p-8 border-2 border-indigo-500 flex flex-col justify-between relative shadow-2xl shadow-indigo-500/10 reveal">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 text-white text-xs font-bold font-mono tracking-wider uppercase shadow-md">
+                        Flagship Career Track
+                    </div>
+
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-md bg-indigo-500/10 text-indigo-400 text-xs font-mono mb-4">Full Stack & Systems</div>
+                        <h4 class="text-3xl font-bold text-white">Coding & Networking</h4>
+                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">Complete full-stack web development (HTML, CSS, JavaScript) paired with network routing, IP subnetting, and Wi-Fi security.</p>
+                        
+                        <div class="mt-6 p-4 rounded-2xl bg-slate-900/90 border border-indigo-500/30">
+                            <div class="flex items-baseline justify-between border-b border-slate-800 pb-3 mb-3">
+                                <div>
+                                    <span class="text-xs text-slate-400 uppercase font-mono">Total Track Fee:</span>
+                                    <div class="text-3xl font-extrabold text-indigo-400 font-mono mt-0.5">₦150,000</div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 text-[10px] font-mono">Max 3 Months</span>
+                            </div>
+
+                            <label class="text-xs font-mono uppercase text-slate-400 block mb-2">Choose How Long You Want to Learn For:</label>
+                            
+                            <div class="grid grid-cols-3 gap-2">
+                                <label onclick="setCodingDuration('1 Month (Intensive Boot)')" class="p-2.5 rounded-xl bg-slate-800 text-center cursor-pointer border border-slate-700 hover:border-indigo-500 transition-all">
+                                    <input type="radio" name="coding-pace" value="1 Month" checked class="hidden">
+                                    <div class="text-xs font-bold text-white">1 Month</div>
+                                    <div class="text-[10px] text-slate-400 mt-0.5">Intensive</div>
+                                </label>
+
+                                <label onclick="setCodingDuration('2 Months (Accelerated Pace)')" class="p-2.5 rounded-xl bg-slate-800 text-center cursor-pointer border border-slate-700 hover:border-indigo-500 transition-all">
+                                    <input type="radio" name="coding-pace" value="2 Months" class="hidden">
+                                    <div class="text-xs font-bold text-white">2 Months</div>
+                                    <div class="text-[10px] text-slate-400 mt-0.5">Accelerated</div>
+                                </label>
+
+                                <label onclick="setCodingDuration('3 Months (Standard Pace)')" class="p-2.5 rounded-xl bg-slate-800 text-center cursor-pointer border border-slate-700 hover:border-indigo-500 transition-all">
+                                    <input type="radio" name="coding-pace" value="3 Months" class="hidden">
+                                    <div class="text-xs font-bold text-white">3 Months</div>
+                                    <div class="text-[10px] text-indigo-300 mt-0.5">₦50k / Mo</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-slate-800/80 pt-6 mt-6">
+                            <div class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fa-solid fa-check text-indigo-400"></i>
+                                <span>3-Hour Standard Hands-On Labs</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fa-solid fa-check text-indigo-400"></i>
+                                <span>HTML5, CSS3, Tailwind & JavaScript ES6+</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fa-solid fa-check text-indigo-400"></i>
+                                <span>Routers, Switches, Cable Crimping & IP Subnetting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openEnrollModal('Coding & Networking', '150000', currentCodingPace)" class="w-full mt-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Apply for Coding & Networking (₦150k)
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modular Standalone Single Packages Section -->
+    <section id="modular" class="py-20 relative bg-brand-dark/80 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono uppercase">Customizable Learning</span>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Single Package Pro Modules</h3>
+                <p class="text-slate-400 mt-2 text-sm">Don't need a full track? Choose standalone professional packages or build a custom bundle.</p>
+            </div>
+
+            <!-- Standalone Module Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- MS Word Pro -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between reveal">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-mono uppercase">Pro Package</span>
+                            <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock mr-1"></i>2 Weeks</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">MS Word Pro</h4>
+                        <p class="text-slate-400 text-xs mb-4">Advanced formatting, automated tables of content, official letterheads, and mail merge.</p>
+                        <div class="text-2xl font-extrabold text-cyan-400 font-mono mb-4">₦15,000</div>
+                    </div>
+                    <button onclick="openEnrollModal('MS Word Pro Package', '15000', '2 Weeks')" class="w-full py-2.5 rounded-xl border border-blue-500/40 hover:bg-blue-500/10 text-blue-300 font-semibold text-xs transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Enroll in Word Pro
+                    </button>
+                </div>
+
+                <!-- MS Excel Pro -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between reveal">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-mono uppercase">Pro Package</span>
+                            <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock mr-1"></i>2 Weeks</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">MS Excel Pro</h4>
+                        <p class="text-slate-400 text-xs mb-4">Master calculation formulas, VLOOKUP/XLOOKUP, IF statements, pivot tables, and analytical charts.</p>
+                        <div class="text-2xl font-extrabold text-emerald-400 font-mono mb-4">₦30,000</div>
+                    </div>
+                    <button onclick="openEnrollModal('MS Excel Pro Package', '30000', '2 Weeks')" class="w-full py-2.5 rounded-xl border border-emerald-500/40 hover:bg-emerald-500/10 text-emerald-300 font-semibold text-xs transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Enroll in Excel Pro
+                    </button>
+                </div>
+
+                <!-- MS PowerPoint Pro -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between reveal">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] font-mono uppercase">Pro Package</span>
+                            <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock mr-1"></i>2 Weeks</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">MS PowerPoint Pro</h4>
+                        <p class="text-slate-400 text-xs mb-4">High-impact pitch decks, master slide layouts, custom animation timelines, and corporate presentations.</p>
+                        <div class="text-2xl font-extrabold text-orange-400 font-mono mb-4">₦20,000</div>
+                    </div>
+                    <button onclick="openEnrollModal('MS PowerPoint Pro Package', '20000', '2 Weeks')" class="w-full py-2.5 rounded-xl border border-orange-500/40 hover:bg-orange-500/10 text-orange-300 font-semibold text-xs transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Enroll in PowerPoint Pro
+                    </button>
+                </div>
+
+                <!-- All-in-One Office Suite Bundle -->
+                <div class="glass-panel p-6 rounded-2xl border-2 border-cyan-500/60 flex flex-col justify-between reveal">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-mono uppercase font-bold">Bundle Deal</span>
+                            <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock mr-1"></i>4 Weeks</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">Office Suite Pro Bundle</h4>
+                        <p class="text-slate-400 text-xs mb-4">Full combination of MS Word Pro + MS Excel Pro + MS PowerPoint Pro in one seamless 4-week program.</p>
+                        <div class="text-2xl font-extrabold text-cyan-400 font-mono mb-4">₦75,000</div>
+                    </div>
+                    <button onclick="openEnrollModal('Office Suite Pro Bundle', '75000', '4 Weeks')" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-white font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-md">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Enroll in Office Bundle
+                    </button>
+                </div>
+
+                <!-- JavaScript Only -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between reveal">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-yellow-500/10 text-yellow-400 text-[10px] font-mono uppercase">Developer Special</span>
+                            <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock mr-1"></i>4 Weeks</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">JavaScript Mastery Only</h4>
+                        <p class="text-slate-400 text-xs mb-4">ES6+ syntax, DOM Manipulation, Async/Await, REST APIs, local storage, and real-time interactive apps.</p>
+                        <div class="text-2xl font-extrabold text-yellow-400 font-mono mb-4">₦70,000</div>
+                    </div>
+                    <button onclick="openEnrollModal('JavaScript Mastery Only', '70000', '4 Weeks')" class="w-full py-2.5 rounded-xl border border-yellow-500/40 hover:bg-yellow-500/10 text-yellow-300 font-semibold text-xs transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Enroll in JS Only
+                    </button>
+                </div>
+
+                <!-- Networking & Hardware Express -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between reveal">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] font-mono uppercase">Express Practical</span>
+                            <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock mr-1"></i>1 Week</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">Networking & Hardware Express</h4>
+                        <p class="text-slate-400 text-xs mb-4">RJ45 Ethernet crimping, Wi-Fi security, IP addressing, and router/switch configurations in 1 week.</p>
+                        <div class="text-2xl font-extrabold text-purple-400 font-mono mb-4">₦15,000</div>
+                    </div>
+                    <button onclick="openEnrollModal('Networking Express', '15000', '1 Week')" class="w-full py-2.5 rounded-xl border border-purple-500/40 hover:bg-purple-500/10 text-purple-300 font-semibold text-xs transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Enroll in Networking Express
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Curriculum Section -->
+    <section id="courses" class="py-20 relative bg-brand-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-2">Curriculum Breakdown</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Explore What You Will Learn</h3>
+                <p class="text-slate-400 mt-2 text-sm">Search topics or filter by specific domains.</p>
+            </div>
+
+            <!-- Search Bar & Filters -->
+            <div class="max-w-3xl mx-auto mb-10 space-y-4 reveal">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="curriculum-search" oninput="filterCurriculum()" placeholder="Search modules (e.g., Excel, HTML, JavaScript, Subnetting, Wi-Fi)..." class="w-full pl-12 pr-4 py-3.5 bg-slate-900/90 border border-slate-700 rounded-2xl text-slate-100 text-sm focus:outline-none focus:border-cyan-500 shadow-inner">
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button onclick="setCategoryFilter('all')" id="filter-btn-all" class="px-4 py-2 rounded-xl text-xs font-mono bg-cyan-500 text-white font-semibold transition-all">All Schemes</button>
+                    <button onclick="setCategoryFilter('appreciation')" id="filter-btn-appreciation" class="px-4 py-2 rounded-xl text-xs font-mono glass-card text-slate-300 hover:text-white transition-all">Computer Operation</button>
+                    <button onclick="setCategoryFilter('coding')" id="filter-btn-coding" class="px-4 py-2 rounded-xl text-xs font-mono glass-card text-slate-300 hover:text-white transition-all">Web Coding</button>
+                    <button onclick="setCategoryFilter('networking')" id="filter-btn-networking" class="px-4 py-2 rounded-xl text-xs font-mono glass-card text-slate-300 hover:text-white transition-all">Networking</button>
+                </div>
+            </div>
+
+            <!-- Curriculum Grid -->
+            <div id="curriculum-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="course-card p-6 rounded-2xl glass-panel border border-slate-800 reveal" data-category="appreciation" data-keywords="hardware os windows linux system files keyboard">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-mono">Computer Operation</span>
+                        <i class="fa-solid fa-desktop text-cyan-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">01. Hardware & OS Navigation</h4>
+                    <p class="text-slate-400 text-xs mb-4">Master physical computer parts, ports, operating system setup, and desktop management.</p>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Computer CPU, RAM, Peripheral Setup</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Windows & Linux Operating Systems</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> File Directory & Folder Organization</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="course-card p-6 rounded-2xl glass-panel border border-slate-800 reveal" data-category="appreciation" data-keywords="ms word office formatting documents typing letters tables pdf">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-mono">MS Word Pro</span>
+                        <i class="fa-solid fa-file-word text-blue-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">02. MS Word & Documentation</h4>
+                    <p class="text-slate-400 text-xs mb-4">Create professional letters, memo formats, official tables, and converted PDF documents.</p>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Document Typography & Formatting</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Headers, Footers & Margins Setup</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Professional PDF Exporting</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="course-card p-6 rounded-2xl glass-panel border border-slate-800 reveal" data-category="appreciation" data-keywords="ms excel spreadsheets math formulas vlookup sum budget charts">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-mono">MS Excel Pro</span>
+                        <i class="fa-solid fa-file-excel text-emerald-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">03. MS Excel & Spreadsheet Data</h4>
+                    <p class="text-slate-400 text-xs mb-4">Master calculation formulas, bookkeeping sheets, inventory trackers, and analytical charts.</p>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Core Formulas (SUM, AVERAGE, IF)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> VLOOKUP, XLOOKUP & Data Filtering</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Graphical Visualizations & Charts</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="course-card p-6 rounded-2xl glass-panel border border-slate-800 reveal" data-category="coding" data-keywords="html css web development frontend flexbox tailwind layout design UI">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 text-xs font-mono">Web Coding</span>
+                        <i class="fa-solid fa-code text-indigo-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">04. HTML5 & Modern CSS3 Layouts</h4>
+                    <p class="text-slate-400 text-xs mb-4">Build responsive website structure, custom styles, CSS Flexbox, Grid, and Tailwind CSS.</p>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Semantic HTML5 Structure</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Responsive Flexbox & Grid Systems</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Modern Tailwind CSS Framework</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="course-card p-6 rounded-2xl glass-panel border border-slate-800 reveal" data-category="coding" data-keywords="javascript js programming dynamic dom fetch api web app logic loops">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 text-xs font-mono">JS Only Track</span>
+                        <i class="fa-brands fa-js text-yellow-400 text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">05. JavaScript Programming</h4>
+                    <p class="text-slate-400 text-xs mb-4">Write dynamic code, handle user interactions, DOM manipulation, and connect external APIs.</p>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Variables, Conditionals & Loops</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> DOM Event Handling & Animations</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Async/Await & REST API Integration</li>
+                    </ul>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="course-card p-6 rounded-2xl glass-panel border border-slate-800 reveal" data-category="networking" data-keywords="networking router ip addressing tcp ip subnet wifi ethernet crimping switch lan">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-mono">Networking</span>
+                        <i class="fa-solid fa-network-wired text-purple-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">06. Network Infrastructure</h4>
+                    <p class="text-slate-400 text-xs mb-4">Configure local networks, cable crimping, router configurations, IP addressing, and Wi-Fi security.</p>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> IPv4 / IPv6 Subnetting Basics</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Router & Switch Configuration</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> RJ45 Ethernet Cable Crimping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Code Playground Section -->
+    <section id="playground" class="py-20 border-t border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono uppercase">Interactive Demo</span>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Live Code Sandbox</h3>
+                <p class="text-slate-400 text-sm mt-1">Test out code directly in your browser. Edit on the left, see live render on the right!</p>
+            </div>
+
+            <div class="glass-panel rounded-3xl border border-slate-800 overflow-hidden shadow-2xl reveal">
+                <div class="bg-slate-900/90 px-6 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-xs font-mono text-slate-400 ml-2">CodeForge-Live-Editor.html</span>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <button onclick="loadTemplate('button')" class="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white">Glow Button</button>
+                        <button onclick="loadTemplate('card')" class="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white">Profile Card</button>
+                        <button onclick="runSandboxCode()" class="text-xs font-mono px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-white font-bold flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-play text-[10px]"></i> Run Code
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-4 bg-brand-dark/90 border-b lg:border-b-0 lg:border-r border-slate-800">
+                        <label class="block text-xs font-mono text-slate-400 mb-2 flex items-center justify-between">
+                            <span>HTML & Inline Style Editor:</span>
+                            <span class="text-[10px] text-cyan-400">Live Render</span>
+                        </label>
+                        <textarea id="sandbox-code-input" oninput="runSandboxCode()" spellcheck="false" class="w-full h-80 bg-slate-950 font-mono text-xs text-cyan-300 p-4 rounded-xl border border-slate-800 focus:outline-none focus:border-cyan-500 leading-relaxed resize-none"><div style="background:#0f172a; padding:24px; border-radius:16px; text-align:center; font-family:sans-serif; color:#ffffff; border:1px solid #06b6d4;">
+  <h2 style="color:#06b6d4; margin-bottom:8px;">PrintKay's Tech</h2>
+  <p style="color:#94a3b8; font-size:14px;">Edit this text in the editor to test live web code output.</p>
+  <button style="background:#10b981; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; margin-top:12px;">
+    WhatsApp Registration
+  </button>
+</div></textarea>
+                    </div>
+
+                    <div class="p-4 bg-slate-950 flex flex-col justify-between">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-2">Instant Render Result:</label>
+                            <div id="sandbox-output" class="w-full h-80 bg-slate-900 rounded-xl p-4 border border-slate-800 overflow-auto flex items-center justify-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Mockup Section -->
+    <section id="certificate" class="py-20 relative bg-brand-dark/40">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+                <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono uppercase">Official Diploma</span>
+                <h3 class="text-3xl font-extrabold text-white mt-2">Earn an Official Certificate</h3>
+                <p class="text-slate-400 text-xs mt-1">Type your name below to preview your completion certificate!</p>
+            </div>
+
+            <div class="max-w-md mx-auto mb-8 space-y-4 reveal">
+                <div>
+                    <label class="block text-xs font-mono text-slate-400 mb-1">Your Full Name:</label>
+                    <input type="text" id="cert-name-input" oninput="updateCertificate()" value="Alex Morgan" placeholder="Enter full name..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-cyan-500">
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl border border-slate-700 relative shadow-2xl max-w-3xl mx-auto bg-slate-950 reveal">
+                <div class="certificate-border p-6 sm:p-8 text-center relative bg-slate-900/90 rounded-xl">
+                    <div class="flex items-center justify-between border-b border-cyan-500/30 pb-4 mb-6">
+                        <span class="font-extrabold text-cyan-400 text-sm tracking-wider">PRINTKAY'S TECH</span>
+                        <i class="fa-solid fa-award text-2xl text-cyan-400"></i>
+                        <span class="font-mono text-[10px] text-slate-400">CODEFORGE ACADEMY</span>
+                    </div>
+
+                    <h2 class="font-serif text-2xl sm:text-3xl text-amber-200 uppercase tracking-widest my-3">Certificate of Completion</h2>
+                    <p class="text-xs text-slate-400 italic">This is proudly awarded to</p>
+
+                    <div id="cert-preview-name" class="font-bold text-2xl sm:text-3xl text-cyan-300 my-4 border-b border-slate-700 pb-2 inline-block px-8">
+                        Alex Morgan
+                    </div>
+
+                    <p class="text-xs text-slate-300 max-w-lg mx-auto leading-relaxed">
+                        For successfully completing the practical requirements and capstone project in <br>
+                        <span id="cert-preview-course" class="font-semibold text-white">Full-Stack Web Development & Network Infrastructure</span>.
+                    </p>
+
+                    <div class="flex items-end justify-between mt-8 pt-4 border-t border-slate-800 text-[10px] font-mono text-slate-400">
+                        <div>
+                            <div class="border-b border-slate-600 pb-1 font-bold text-slate-200">P.KAY Digital Exec</div>
+                            <div>Authorized Signature</div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-bold text-xs">
+                            SEAL
+                        </div>
+                        <div>
+                            <div id="cert-preview-date" class="border-b border-slate-600 pb-1 text-slate-200">2026</div>
+                            <div>Date Issued</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW "Find Us On" Social & Search Channels Section -->
+    <section id="connect" class="py-16 relative bg-brand-dark/90 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+                <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono uppercase">Connect With Us</span>
+                <h3 class="text-3xl font-extrabold text-white mt-2">Find PrintKay's Tech Online</h3>
+                <p class="text-slate-400 text-sm mt-1">Explore our official presence across search, social media, and web portals.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                
+                <!-- Google Card -->
+                <a href="https://share.google/rFkUjwgO5nAJ8h3Rs" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/60 transition-all group flex flex-col items-center text-center reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-red-400 text-2xl group-hover:scale-110 transition-transform mb-4">
+                        <i class="fa-brands fa-google"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Google Business</h4>
+                    <p class="text-slate-400 text-xs mt-1">Search for PrintKay's Tech on Google Maps & Reviews.</p>
+                    <span class="text-xs font-mono text-cyan-400 mt-4 flex items-center gap-1">Search Us <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                </a>
+
+                <!-- TikTok Card -->
+                <a href="https://www.tiktok.com/@printkays.digital?_r=1&_t=ZS-99P3wZYxih5" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/60 transition-all group flex flex-col items-center text-center reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform mb-4">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">TikTok Handle</h4>
+                    <p class="text-slate-400 text-xs mt-1">Follow @printkaysdigitalenterprise for practical tips & student work.</p>
+                    <span class="text-xs font-mono text-cyan-400 mt-4 flex items-center gap-1">@printkaysdigitalenterprise <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                </a>
+
+                <!-- Landing Page / Enterprise Portal -->
+                <a href="https://printkaysdigitalenterprise.vercel.app/" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/60 transition-all group flex flex-col items-center text-center reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 text-2xl group-hover:scale-110 transition-transform mb-4">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Official Website</h4>
+                    <p class="text-slate-400 text-xs mt-1">Main landing page and student training portal.</p>
+                    <span class="text-xs font-mono text-cyan-400 mt-4 flex items-center gap-1">CodeForge Hub <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                </a>
+
+                <!-- Direct WhatsApp Line -->
+                <a href="https://wa.me/2349020730693" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-emerald-500/60 transition-all group flex flex-col items-center text-center reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-110 transition-transform mb-4">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">WhatsApp Line</h4>
+                    <p class="text-slate-400 text-xs mt-1">Direct support & admissions at 09020730693.</p>
+                    <span class="text-xs font-mono text-emerald-400 mt-4 flex items-center gap-1">09020730693 <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 relative border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 reveal">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-2">Got Questions?</h2>
+                <h3 class="text-3xl font-extrabold text-white">Frequently Asked Questions</h3>
+            </div>
+
+            <div id="faq-list" class="space-y-4 reveal">
+                <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full px-6 py-5 text-left font-semibold text-white flex justify-between items-center focus:outline-none text-sm">
+                        <span>How long is each practical session?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-cyan-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-1" class="hidden px-6 pb-5 text-slate-400 text-xs sm:text-sm leading-relaxed border-t border-slate-800/50 pt-3">
+                        Each practical class is structured as a **3-hour hands-on session**. If you require additional study or lab hours, this can be physically arranged with your tutor.
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full px-6 py-5 text-left font-semibold text-white flex justify-between items-center focus:outline-none text-sm">
+                        <span>What is the difference between Facility Learning and Home Tutor?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-cyan-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-2" class="hidden px-6 pb-5 text-slate-400 text-xs sm:text-sm leading-relaxed border-t border-slate-800/50 pt-3">
+                        - **Facility Learning:** Free / Included with tuition fee.<br>
+                        - **Home Tutor:** The tutor comes directly to your home. Daily transport allowance is required (negotiable based on location).
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full px-6 py-5 text-left font-semibold text-white flex justify-between items-center focus:outline-none text-sm">
+                        <span>How do I apply and register?</span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-cyan-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-3" class="hidden px-6 pb-5 text-slate-400 text-xs sm:text-sm leading-relaxed border-t border-slate-800/50 pt-3">
+                        Click any of the enrollment buttons on the site. It will let you choose your course, location preference (Facility vs. Home), and send your registration directly to our official WhatsApp line (**09020730693**).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Direct WhatsApp Enrollment Modal -->
+    <div id="enroll-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-panel w-full max-w-lg rounded-3xl border border-slate-700 p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button onclick="closeEnrollModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-xs font-mono text-emerald-400 uppercase flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp Application
+                </span>
+                <h3 class="text-2xl font-bold text-white mt-1">Enroll at PrintKay's Tech</h3>
+                <p class="text-slate-400 text-xs mt-1">Fill this quick form to dispatch your application directly to 09020730693 on WhatsApp.</p>
+            </div>
+
+            <form id="whatsapp-enroll-form" onsubmit="sendToWhatsApp(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Full Name</label>
+                    <input type="text" id="modal-name" required placeholder="e.g. Samuel Okon" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:border-cyan-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Phone / WhatsApp Number</label>
+                    <input type="tel" id="modal-phone" required placeholder="09020000000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:border-cyan-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Program Selected</label>
+                        <input type="text" id="modal-course" readonly class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-cyan-300 font-semibold text-xs cursor-not-allowed">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Duration / Pace</label>
+                        <input type="text" id="modal-duration" readonly class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-indigo-300 font-semibold text-xs cursor-not-allowed">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Tuition Fee</label>
+                    <input type="text" id="modal-fee" readonly class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-emerald-400 font-extrabold text-sm font-mono cursor-not-allowed">
+                </div>
+
+                <!-- Learning Location Mode -->
+                <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                    <label class="block text-xs font-mono text-slate-300 uppercase">Learning Location Mode:</label>
+                    
+                    <label class="flex items-center gap-3 text-xs text-slate-200 cursor-pointer">
+                        <input type="radio" name="learning-venue" value="Facility (Free)" checked class="text-cyan-500">
+                        <span>Learn in Our Facility <strong class="text-emerald-400 font-mono">(Free)</strong></span>
+                    </label>
+
+                    <label class="flex items-center gap-3 text-xs text-slate-200 cursor-pointer">
+                        <input type="radio" name="learning-venue" value="Home Tutor (Negotiable Transport Fee)" class="text-cyan-500">
+                        <span>Home Tutor <strong class="text-amber-400 font-mono">(Daily transport, negotiable)</strong></span>
+                    </label>
+                </div>
+
+                <!-- Session Length Confirmation -->
+                <div class="text-[11px] font-mono text-slate-400 bg-slate-900/50 p-3 rounded-lg border border-slate-800">
+                    <i class="fa-solid fa-circle-info text-cyan-400 mr-1"></i> Class Session: Standard 3 hours per class (More hours negotiable physically).
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Launch WhatsApp Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Action -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <a href="https://wa.me/2349020730693?text=Hello%20PrintKay's%20Tech,%20I'm%20interested%20in%20enrolling" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-xl shadow-emerald-500/40 transition-all transform hover:scale-110" title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-brand-dark py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold text-sm">
+                    P
+                </div>
+                <div>
+                    <span class="font-bold text-white text-sm">PrintKay's Tech</span>
+                    <span class="text-slate-500 text-[10px] block">P.KAY Digital Enterprise Initiative</span>
+                </div>
+            </div>
+
+            <div class="text-slate-500 text-xs text-center md:text-right">
+                Official WhatsApp: <a href="https://wa.me/2349020730693" class="text-emerald-400 font-mono hover:underline">09020730693</a> <br>
+                TikTok: <a href="https://www.tiktok.com/@printkays.digital?_r=1&_t=ZS-99P3wZYxih5" class="text-cyan-400 font-mono hover:underline">@printkaysdigitalenterprise</a> | &copy; <span id="year-span"></span> PrintKay's Tech / CodeForge Academy.
+            </div>
+        </div>
+    </footer>
+
+      <script src="printkays tech.js"> </script>
+    
+</body>
+</html>
